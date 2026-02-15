@@ -52,4 +52,22 @@ dependencies {
     implementation("androidx.fragment:fragment:1.8.5")
     implementation("androidx.databinding:databinding-runtime:8.10.0")
     implementation("it.xabaras.android:recyclerview-swipedecorator:1.4")
+    implementation(libs.net.okhttp)
+    implementation(libs.net.okhttp.logging)
+    implementation(libs.net.retrofit)
+    implementation(libs.net.retrofit.kotlin)
+    implementation(libs.kotlin.dateTime)
+    implementation(libs.kotlin.serialization.core)
+    implementation(libs.kotlin.serialization.json)
+    implementation(libs.kotlin.coroutines.core)
+    implementation(libs.kotlin.coroutines.android)
+    implementation(libs.lifecycle.viewmodel)
+
+    testImplementation(libs.junit.junit)
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.kotlin.mockito)
+    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.androidx.testing)
+
+    implementation(libs.hilt.android)
 }
