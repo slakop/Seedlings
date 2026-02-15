@@ -17,7 +17,6 @@ import retrofit2.http.Query
 
 private const val baseUrl = "http://192.168.1.41:5000"
 
-val qqq: List<Profile> = emptyList()
 interface Api {
     @GET("get")
     suspend fun getProfile(): Response<List<Profile>>

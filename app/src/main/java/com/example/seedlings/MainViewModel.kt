@@ -39,10 +39,11 @@ class MainViewModel @Inject constructor(private val service: NetService) : ViewM
     val uiState: LiveData<ViewState> get() = mUiState
 
     fun getProfile() {
-        viewModelScope.launch {
-            mUiState.value = ViewState.Loading
-            mUiState.value = ViewState.Content(service.getProfile())
-        }
+        var a = 5
+        //viewModelScope.launch {
+        //    mUiState.value = ViewState.Loading
+        //    mUiState.value = ViewState.Content(service.getProfile())
+        //}
     }
 
     fun setProfile(profile: Profile) {

@@ -15,13 +15,13 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.seedlings.R
-import com.example.seedlings.databinding.Activity2MainBinding
+import com.example.seedlings.databinding.FragmentListBinding
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import kotlin.random.Random
 
-class ListFragment : Fragment(R.layout.activity2_main) {
-    private val binding: Activity2MainBinding by lazy {
-        Activity2MainBinding.inflate(layoutInflater)
+class ListFragment : Fragment(R.layout.fragment_list) {
+    private val binding: FragmentListBinding by lazy {
+        FragmentListBinding.inflate(layoutInflater)
     }
     private var chatList: MutableList<ChatItem> = mutableListOf()
     private lateinit var adapter: ChatAdapter

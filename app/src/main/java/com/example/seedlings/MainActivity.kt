@@ -9,12 +9,12 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.seedlings.databinding.Activity2MainBinding
+import com.example.seedlings.databinding.FragmentListBinding
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var topFragment: CalendarFragment
+    private lateinit var calendarFragment: CalendarFragment
     private lateinit var bottomFragment: BottomFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,14 +23,14 @@ class MainActivity : AppCompatActivity() {
 
 
         if (savedInstanceState == null) {
-            topFragment = CalendarFragment()
+            calendarFragment = CalendarFragment()
             bottomFragment = BottomFragment()
             supportFragmentManager.beginTransaction()
-                .replace(R.id.top_container, topFragment, "top")
+                .replace(R.id.top_container, calendarFragment, "calendar")
                 .replace(R.id.bottom_container, bottomFragment, "bottom")
                 .commit()
         } else {
-            topFragment = supportFragmentManager.findFragmentByTag("top") as CalendarFragment
+            calendarFragment = supportFragmentManager.findFragmentByTag("calendar") as CalendarFragment
             bottomFragment = supportFragmentManager.findFragmentByTag("bottom") as BottomFragment
         }
     }

@@ -1,30 +1,43 @@
 package com.example.seedlings
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.isVisible
-import com.example.seedlings.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.datetime.Instant
+import androidx.fragment.app.Fragment
 import com.example.seedlings.data.Profile
-import com.example.seedlings.data.ViewState
-//import com.example.seedlings.databinding.ActivityMainBinding
+import com.example.seedlings.databinding.ActivityMainBinding
+import com.example.seedlings.databinding.FragmentListBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlin.getValue
+import androidx.lifecycle.ViewModelProvider
 
 @AndroidEntryPoint
-class MainActivity2 : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
+class TestFragment : Fragment(R.layout.fragment_test) {
+    private val binding: FragmentListBinding by lazy {
+        FragmentListBinding.inflate(layoutInflater)
+    }
+    //private lateinit var binding: ActivityMainBinding
 
     //private val viewModel: MainViewModel by viewModels()
+    private val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
+
+//    override fun onCreateView(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View? {
+//        return super.onCreateView(inflater, container, savedInstanceState)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        //viewModel.getProfile()
+
+        //binding = ActivityMainBinding.inflate(layoutInflater)
+        //setContentView(binding.root)
 
         //viewModel.uiState.observe(this) { state ->
         //    when(state) {
