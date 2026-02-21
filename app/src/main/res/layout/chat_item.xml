@@ -12,7 +12,7 @@
         android:layout_width="64dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:src="@drawable/avatar_1"
+        android:src="@drawable/cucumber"
         />
 
     <androidx.constraintlayout.widget.Guideline
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toTopOf="@+id/title"
         app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintStart_toEndOf="@id/muteIcon"
-        android:src="@drawable/scam_patch"
+        android:src="@drawable/planted"
         />
 
     <TextView

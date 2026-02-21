@@ -1,18 +1,11 @@
 package com.example.seedlings
 
-import android.graphics.Canvas
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.seedlings.databinding.FragmentListBinding
+import com.example.seedlings.fragment.BottomFragment
+import com.example.seedlings.fragment.CalendarFragment
 import dagger.hilt.android.AndroidEntryPoint
-import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
-import kotlin.random.Random
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var calendarFragment: CalendarFragment
