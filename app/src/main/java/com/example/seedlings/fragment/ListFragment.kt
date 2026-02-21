@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -124,29 +127,47 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     }
 
     private fun createItems(size: Int){
-        var id = 0
-        val type = arrayOf("огурец" , "томат","перец")
-        val name = arrayOf("Nikolay", "Anno", "You")
-        val manufacturer = arrayOf("издатель 1", "издатель 2", "издатель 3")
-        for (i in 1..size) {
-            chatList.add(
-                ChatItem(
-                    id++,
-                    type[Random.nextInt(type.size)],
-                    name[Random.nextInt(name.size)],
-                    manufacturer[Random.nextInt(manufacturer.size)],
-                    Random.nextInt(100),
-                    0,
-                    Random.nextInt(100),
-                    "2026-01-01"
-                )
-            )
+//        var id = 0
+//        val type = arrayOf("огурец" , "томат","перец")
+//        val name = arrayOf("Nikolay", "Anno", "You")
+//        val manufacturer = arrayOf("издатель 1", "издатель 2", "издатель 3")
+//        for (i in 1..size) {
+//            chatList.add(
+//                ChatItem(
+//                    id++,
+//                    type[Random.nextInt(type.size)],
+//                    name[Random.nextInt(name.size)],
+//                    manufacturer[Random.nextInt(manufacturer.size)],
+//                    Random.nextInt(100),
+//                    0,
+//                    Random.nextInt(100),
+//                    "2026-01-01"
+//                )
+//            )
+//        }
+
+//        activity?.supportFragmentManager?.setFragmentResultListener(
+//            "key",
+//            viewLifecycleOwner,
+//            { requestKey, chatList ->
+//                TODO("Not yet implemented")
+//            })
+
+        setFragmentResultListener("requestKey") { requestKey, bundle ->
+            // We use a String here, but any type that can be put in a Bundle is supported,
+            // remember that putExtra from intents uses a Bundle underlying, so anything
+            // you putExtra works here too!
+            val chatList = bundle.getSerializable("bundleKey") as MutableList<ChatItem>
+            adapter.submitList(chatList)
+            adapter.notifyDataSetChanged()
+            // Do something with the result
         }
 
+    //    val networkFragment = NetworkFragment.newInstance(chatList)
     //    networkFragment=NetworkFragment()
     //    var a = networkFragment.test()
     //    chatList = NetworkFragment().test()
-        adapter.submitList(chatList)
-        adapter.notifyDataSetChanged()
+    //    adapter.submitList(chatList)
+    //    adapter.notifyDataSetChanged()
     }
 }

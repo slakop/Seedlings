@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import com.example.seedlings.MainViewModel
 import com.example.seedlings.R
@@ -89,14 +92,6 @@ public final class NetworkFragment : Fragment(R.layout.fragment_network) {
             viewModel.putProfile(qqq)
         }
 
-//        val bundle = Bundle()
-//        bundle.putInt(KEY, chatList)
-//        ListFragment.setArguments(bundle)
-//
-//        val bundle = this.getArguments()
-//        if (bundle != null) {
-//            val myInt = bundle.getInt(KEY, 0)
-//        }
         return binding.root
 
     }
@@ -130,6 +125,7 @@ public final class NetworkFragment : Fragment(R.layout.fragment_network) {
         for (i in 0..index) {
             chatList.add(profile[i])
         }
+        setFragmentResult("requestKey",bundleOf("bundleKey" to chatList))
     }
 
     private fun toContentSend(profile: ChatItem) = with(binding) {
@@ -143,6 +139,7 @@ public final class NetworkFragment : Fragment(R.layout.fragment_network) {
     }
 
     private fun toContentAllSend(profile: List<ChatItem>) = with(binding) {
+        val index = profile.size-1
         //nameLabel.isVisible = true
         //name.isVisible = true
         //name.text = profile.name
@@ -150,10 +147,10 @@ public final class NetworkFragment : Fragment(R.layout.fragment_network) {
         //age.isVisible = true
         //age.text = profile.age.toString()
         progressBar.isVisible = false
-    }
+        for (i in 0..index) {
+            chatList.add(profile[i])
+        }
+        setFragmentResult("requestKey",bundleOf("bundleKey" to chatList))
 
-    public fun test() : MutableList<ChatItem> {
-        return chatList
     }
-
 }

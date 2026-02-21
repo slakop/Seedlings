@@ -21,10 +21,10 @@ class ChatAdapter: ListAdapter<ChatItem, ChatViewHolder>(ChatDiffCallback()) {
         val chatItem = getItem(position)
         val binding = holder.binding
 
-        when (chatItem.id % 3) {
-            0-> binding.imageAvatar.setImageResource(R.drawable.cucumber)
-            1-> binding.imageAvatar.setImageResource(R.drawable.tomato)
-            2-> binding.imageAvatar.setImageResource(R.drawable.pepper)
+        when (chatItem.type) {
+            "огурец"-> binding.imageAvatar.setImageResource(R.drawable.cucumber)
+            "томат"-> binding.imageAvatar.setImageResource(R.drawable.tomato)
+            "перец"-> binding.imageAvatar.setImageResource(R.drawable.pepper)
             else -> binding.imageAvatar.setImageResource(R.drawable.cucumber)
         }
 
