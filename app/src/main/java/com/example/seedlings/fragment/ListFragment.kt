@@ -124,24 +124,20 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private fun createItems(size: Int){
         var id = 0
-        val title = arrayOf("Dima Murantsev" , "SnejUgal News","Catbird","just design", "R4IN80W", "Yes. No")
-        val author = arrayOf("Nikolay", "Anno", "You", "...typing"," ")
-        val message = arrayOf("you are welcome :)", "F", "I want pizza", "du biest mein sonnechein", "I see all :))", "That`s better")
+        val type = arrayOf("огурец" , "томат","перец")
+        val name = arrayOf("Nikolay", "Anno", "You")
+        val manufacturer = arrayOf("издатель 1", "издатель 2", "издатель 3")
         for (i in 1..size) {
             chatList.add(
                 ChatItem(
                     id++,
-                    title[Random.nextInt(title.size)],
-                    author[Random.nextInt(author.size)],
-                    message[Random.nextInt(author.size)],
-                    Random.nextBoolean(),
-                    Random.nextBoolean(),
-                    Random.nextBoolean(),
+                    type[Random.nextInt(type.size)],
+                    name[Random.nextInt(name.size)],
+                    manufacturer[Random.nextInt(manufacturer.size)],
                     Random.nextInt(100),
                     Random.nextBoolean(),
-                    Random.nextBoolean(),
-                    Random.nextInt(24).toString() + ":" + (Random.nextInt(60).toString()
-                        .padStart(2, '0'))
+                    Random.nextInt(100),
+                    "2026-01-01"
                 )
             )
         }
