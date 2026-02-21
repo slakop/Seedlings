@@ -25,6 +25,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     //var id = 0
     var previousItemsCount = 0
     private var pageLoad = false
+    private lateinit var networkFragment: NetworkFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         adapter = ChatAdapter()
@@ -135,12 +136,16 @@ class ListFragment : Fragment(R.layout.fragment_list) {
                     name[Random.nextInt(name.size)],
                     manufacturer[Random.nextInt(manufacturer.size)],
                     Random.nextInt(100),
-                    Random.nextBoolean(),
+                    0,
                     Random.nextInt(100),
                     "2026-01-01"
                 )
             )
         }
+
+    //    networkFragment=NetworkFragment()
+    //    var a = networkFragment.test()
+    //    chatList = NetworkFragment().test()
         adapter.submitList(chatList)
         adapter.notifyDataSetChanged()
     }

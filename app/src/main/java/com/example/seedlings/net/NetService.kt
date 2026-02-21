@@ -2,14 +2,14 @@ package com.example.seedlings.net
 
 import kotlinx.coroutines.delay
 import kotlinx.datetime.Instant
-import com.example.seedlings.data.Profile
+import com.example.seedlings.chat.ChatItem
 import javax.inject.Inject
 
 interface NetService {
-    suspend fun getProfile(): List<Profile>
-    suspend fun setProfile(profile: Profile): Profile
-    suspend fun putProfile(profile: List<Profile>): List<Profile>
-    suspend fun delProfile(profile: Profile): Profile
+    suspend fun getProfile(): List<ChatItem>
+    suspend fun setProfile(profile: ChatItem): ChatItem
+    suspend fun putProfile(profile: List<ChatItem>): List<ChatItem>
+    suspend fun delProfile(profile: ChatItem): ChatItem
 
 
     class Impl @Inject constructor(
@@ -18,10 +18,10 @@ interface NetService {
         private val putProfileCommand: PutProfile,
         private val delProfileCommand: DelProfile
       ) : NetService {
-        override suspend fun getProfile(): List<Profile> = profileCommand()
-        override suspend fun setProfile(profile: Profile): Profile = setProfileCommand(profile)
-        override suspend fun putProfile(profile: List<Profile>): List<Profile> = putProfileCommand(profile)
-        override suspend fun delProfile(profile: Profile): Profile = delProfileCommand(profile)
+        override suspend fun getProfile(): List<ChatItem> = profileCommand()
+        override suspend fun setProfile(profile: ChatItem): ChatItem = setProfileCommand(profile)
+        override suspend fun putProfile(profile: List<ChatItem>): List<ChatItem> = putProfileCommand(profile)
+        override suspend fun delProfile(profile: ChatItem): ChatItem = delProfileCommand(profile)
     }
 }
 

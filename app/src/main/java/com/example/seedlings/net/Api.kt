@@ -4,7 +4,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
-import com.example.seedlings.data.Profile
+import com.example.seedlings.chat.ChatItem
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.Body
@@ -19,16 +19,16 @@ private const val baseUrl = "http://192.168.1.41:5000"
 
 interface Api {
     @GET("get")
-    suspend fun getProfile(): Response<List<Profile>>
+    suspend fun getProfile(): Response<List<ChatItem>>
 
     @POST("post")
-    suspend fun setProfile(@Body profile: Profile): Response<Profile>
+    suspend fun setProfile(@Body profile: ChatItem): Response<ChatItem>
 
     @PUT("put")
-    suspend fun putProfile(@Body profile: List<Profile>): Response<List<Profile>>
+    suspend fun putProfile(@Body profile: List<ChatItem>): Response<List<ChatItem>>
 
     @HTTP(method = "DELETE", path = "delete", hasBody = true)
-    suspend fun delProfile(@Body profile: Profile): Response<Profile>
+    suspend fun delProfile(@Body profile: ChatItem): Response<ChatItem>
 }
 
 fun buildRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()

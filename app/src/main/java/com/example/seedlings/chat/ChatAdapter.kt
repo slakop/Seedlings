@@ -31,10 +31,10 @@ class ChatAdapter: ListAdapter<ChatItem, ChatViewHolder>(ChatDiffCallback()) {
         binding.type.setText(chatItem.type)
         binding.name.setText(chatItem.name)
         binding.manufacturer.setText(chatItem.manufacturer)
-        binding.planted.visibility = if (chatItem.planted) View.VISIBLE else View.INVISIBLE
+        binding.planted.visibility = if (chatItem.planted==1) View.VISIBLE else View.INVISIBLE
         binding.counter.visibility = if (chatItem.counter > 0) View.VISIBLE else View.INVISIBLE
         binding.counter.text = if (binding.counter.visibility == View.VISIBLE) chatItem.counter.toString() else ""
-        if (chatItem.planted) binding.counter.backgroundTintList = ColorStateList.valueOf(
+        if (chatItem.planted==0) binding.counter.backgroundTintList = ColorStateList.valueOf(
             Color.parseColor("#C5C9CC"))
         binding.date.setText(chatItem.date)
     }

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.seedlings.chat.ChatItem
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Binds
 import dagger.Module
@@ -18,7 +19,6 @@ import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import com.example.seedlings.data.Profile
 import com.example.seedlings.data.ViewState
 import com.example.seedlings.net.Api
 import com.example.seedlings.net.AuthInterceptor
@@ -45,21 +45,21 @@ class MainViewModel @Inject constructor(private val service: NetService) : ViewM
         }
     }
 
-    fun setProfile(profile: Profile) {
+    fun setProfile(profile: ChatItem) {
         viewModelScope.launch {
             mUiState.value = ViewState.Loading
             mUiState.value = ViewState.ContentSend(service.setProfile(profile))
         }
     }
 
-    fun delProfile(profile: Profile) {
+    fun delProfile(profile: ChatItem) {
         viewModelScope.launch {
             mUiState.value = ViewState.Loading
             mUiState.value = ViewState.ContentSend(service.delProfile(profile))
         }
     }
 
-    fun putProfile(profile: List<Profile>) {
+    fun putProfile(profile: List<ChatItem>) {
         viewModelScope.launch {
             mUiState.value = ViewState.Loading
             mUiState.value = ViewState.ContentAllSend(service.putProfile(profile))

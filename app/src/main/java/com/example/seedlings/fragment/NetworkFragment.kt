@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.seedlings.MainViewModel
 import com.example.seedlings.R
-import com.example.seedlings.data.Profile
+import com.example.seedlings.chat.ChatItem
 import com.example.seedlings.data.ViewState
 import com.example.seedlings.databinding.FragmentNetworkBinding
 import dagger.hilt.android.AndroidEntryPoint
+
+const val KEY = "key"
 
 @AndroidEntryPoint
 public final class NetworkFragment : Fragment(R.layout.fragment_network) {
@@ -22,10 +24,9 @@ public final class NetworkFragment : Fragment(R.layout.fragment_network) {
     private var _binding: FragmentNetworkBinding? = null
     private val binding get() = _binding!!
 
-    //private lateinit var binding: Activity2MainBinding
-
-    //private val viewModel: MainViewModel by viewModels()
     private val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
+
+    private var chatList: MutableList<ChatItem> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,80 +53,107 @@ public final class NetworkFragment : Fragment(R.layout.fragment_network) {
         }
         binding.save.setOnClickListener {
             viewModel.setProfile(
-                Profile(
-                    userId = 1,
-                    name = "Vasya",
-                    age = 55,
+                ChatItem(
+                    id = 1,
+                    type = "томат",
+                    name = "тест1",
+                    manufacturer = "издатель 1",
+                    day = 50,
+                    planted = 0,
+                    counter = 10,
+                    date = "2026-01-01"
                 )
             )
         }
         binding.delete.setOnClickListener {
             viewModel.delProfile(
-                Profile(
-                    userId = 1,
-                    name = "Vasya",
-                    age = 25,
+                ChatItem(
+                    id = 1,
+                    type = "томат",
+                    name = "тест1",
+                    manufacturer = "издатель 1",
+                    day = 50,
+                    planted = 0,
+                    counter = 10,
+                    date = "2026-01-01"
                 )
             )
         }
 
-        val qqq: MutableList<Profile> = mutableListOf()
-        qqq.add(Profile(userId = 1, name = "Vasya", age = 95))
-        qqq.add(Profile(userId = 1, name = "Vasya", age = 96))
-        qqq.add(Profile(userId = 1, name = "Vasya", age = 97))
+        val qqq: MutableList<ChatItem> = mutableListOf()
+        qqq.add(ChatItem(id = 1, type = "томат", name = "тест1", manufacturer = "издатель 1", day = 50,planted = 0,counter = 10, date = "2026-01-01"))
+        qqq.add(ChatItem(id = 1, type = "огурец", name = "тест1", manufacturer = "издатель 2", day = 50,planted = 0,counter = 10, date = "2026-01-01"))
+        qqq.add(ChatItem(id = 1, type = "перец", name = "тест1", manufacturer = "издатель 3", day = 50,planted = 0,counter = 10, date = "2026-01-01"))
 
         binding.put.setOnClickListener {
             viewModel.putProfile(qqq)
         }
 
+//        val bundle = Bundle()
+//        bundle.putInt(KEY, chatList)
+//        ListFragment.setArguments(bundle)
+//
+//        val bundle = this.getArguments()
+//        if (bundle != null) {
+//            val myInt = bundle.getInt(KEY, 0)
+//        }
         return binding.root
 
     }
 
     private fun toNone() = with(binding) {
-        nameLabel.isVisible = false
-        name.isVisible = false
-        ageLabel.isVisible = false
-        age.isVisible = false
+//        nameLabel.isVisible = false
+//        name.isVisible = false
+//        ageLabel.isVisible = false
+//        age.isVisible = false
         progressBar.isVisible = false
     }
 
     private fun toLoading() = with(binding) {
-        nameLabel.isVisible = false
-        name.isVisible = false
-        ageLabel.isVisible = false
-        age.isVisible = false
+//        nameLabel.isVisible = false
+//        name.isVisible = false
+//        ageLabel.isVisible = false
+//        age.isVisible = false
         progressBar.isVisible = true
     }
 
-    private fun toContent(profile: List<Profile>) = with(binding) {
+    private fun toContent(profile: List<ChatItem>) = with(binding) {
         val index = profile.size-1
-        nameLabel.isVisible = true
-        name.isVisible = true
-        name.text = profile[index].name
-        ageLabel.isVisible = true
-        age.isVisible = true
-        age.text = profile[index].age.toString()
+//        nameLabel.isVisible = true
+//        name.isVisible = true
+          name.text = profile[index].type
+//        ageLabel.isVisible = true
+//        age.isVisible = true
+//        age.text = profile[index].age.toString()
         progressBar.isVisible = false
+
+        for (i in 0..index) {
+            chatList.add(profile[i])
+        }
     }
 
-    private fun toContentSend(profile: Profile) = with(binding) {
-        nameLabel.isVisible = true
-        name.isVisible = true
-        name.text = profile.name
-        ageLabel.isVisible = true
-        age.isVisible = true
-        age.text = profile.age.toString()
-        progressBar.isVisible = false
-    }
-
-    private fun toContentAllSend(profile: List<Profile>) = with(binding) {
-        nameLabel.isVisible = true
-        name.isVisible = true
+    private fun toContentSend(profile: ChatItem) = with(binding) {
+        //nameLabel.isVisible = true
+        //name.isVisible = true
         //name.text = profile.name
-        ageLabel.isVisible = true
-        age.isVisible = true
+        //ageLabel.isVisible = true
+        //age.isVisible = true
         //age.text = profile.age.toString()
         progressBar.isVisible = false
     }
+
+    private fun toContentAllSend(profile: List<ChatItem>) = with(binding) {
+        //nameLabel.isVisible = true
+        //name.isVisible = true
+        //name.text = profile.name
+        //ageLabel.isVisible = true
+        //age.isVisible = true
+        //age.text = profile.age.toString()
+        progressBar.isVisible = false
+    }
+
+    public fun test() : MutableList<ChatItem> {
+        return chatList
+    }
+
 }

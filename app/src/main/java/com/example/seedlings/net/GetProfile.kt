@@ -5,15 +5,15 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import com.example.seedlings.data.Profile
+import com.example.seedlings.chat.ChatItem
 import java.io.IOException
 import javax.inject.Inject
 
 interface GetProfile {
-    suspend operator fun invoke(): List<Profile>
+    suspend operator fun invoke(): List<ChatItem>
 
     class Impl @Inject constructor(private val api: Api) : GetProfile {
-        override suspend fun invoke(): List<Profile> {
+        override suspend fun invoke(): List<ChatItem> {
             //val response = api.getProfile(123)
             val response = api.getProfile()
             if (!response.isSuccessful) {
