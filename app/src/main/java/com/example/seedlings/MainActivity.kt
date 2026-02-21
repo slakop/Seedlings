@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.seedlings.databinding.FragmentListBinding
+import dagger.hilt.android.AndroidEntryPoint
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import kotlin.random.Random
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var calendarFragment: CalendarFragment
     private lateinit var bottomFragment: BottomFragment

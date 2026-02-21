@@ -9,7 +9,7 @@ class BottomFragment : Fragment(R.layout.fragment_bottom) {
     lateinit var button: Button
     private lateinit var cardFragment: CardFragment
     private lateinit var listFragment: ListFragment
-    private lateinit var testFragment: TestFragment
+    private lateinit var testFragment: MainActivity2
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,7 +43,7 @@ class BottomFragment : Fragment(R.layout.fragment_bottom) {
         button = view.findViewById(R.id.test)
         button.setOnClickListener {
             if (savedInstanceState == null) {
-                testFragment = TestFragment()
+                testFragment = MainActivity2()
 
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.top_container, testFragment, "test")

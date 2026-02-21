@@ -6,22 +6,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.example.seedlings.data.Profile
 import com.example.seedlings.databinding.ActivityMainBinding
 import com.example.seedlings.databinding.FragmentListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.getValue
 import androidx.lifecycle.ViewModelProvider
+import com.example.seedlings.data.ViewState
+import com.example.seedlings.databinding.Activity2MainBinding
 
 @AndroidEntryPoint
-class TestFragment : Fragment(R.layout.fragment_test) {
+public final class TestFragment : Fragment(R.layout.fragment_test) {
     private val binding: FragmentListBinding by lazy {
         FragmentListBinding.inflate(layoutInflater)
     }
     //private lateinit var binding: ActivityMainBinding
 
     //private val viewModel: MainViewModel by viewModels()
+    //private lateinit var binding: TestFragment
     private val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
 
 //    override fun onCreateView(
@@ -30,7 +35,7 @@ class TestFragment : Fragment(R.layout.fragment_test) {
 //        savedInstanceState: Bundle?
 //    ): View? {
 //        return super.onCreateView(inflater, container, savedInstanceState)
-//    }
+//        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,19 +44,19 @@ class TestFragment : Fragment(R.layout.fragment_test) {
         //binding = ActivityMainBinding.inflate(layoutInflater)
         //setContentView(binding.root)
 
-        //viewModel.uiState.observe(this) { state ->
-        //    when(state) {
-        //        ViewState.None -> toNone()
-        //        ViewState.Loading -> toLoading()
-        //        is ViewState.Content -> toContent(state.profile)
-        //        is ViewState.ContentSend -> toContentSend(state.profile)
-        //        is ViewState.ContentAllSend -> toContentAllSend(state.profile)
-        //    }
-        //}
+        viewModel.uiState.observe(this) { state ->
+            when(state) {
+                ViewState.None -> toNone()
+                ViewState.Loading -> toLoading()
+                is ViewState.Content -> toContent(state.profile)
+                is ViewState.ContentSend -> toContentSend(state.profile)
+                is ViewState.ContentAllSend -> toContentAllSend(state.profile)
+            }
+        }
 
-        //binding.button.setOnClickListener {
-        //    viewModel.getProfile()
-        //}
+//        binding.button.setOnClickListener {
+//            viewModel.getProfile()
+//        }
         //binding.save.setOnClickListener {
         //    viewModel.setProfile(Profile(
         //        userId = 1,

@@ -1,32 +1,48 @@
 package com.example.seedlings
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.seedlings.databinding.Activity2MainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.datetime.Instant
 import com.example.seedlings.data.Profile
 import com.example.seedlings.data.ViewState
+import com.example.seedlings.databinding.FragmentListBinding
+
 //import com.example.seedlings.databinding.ActivityMainBinding
 
+
 @AndroidEntryPoint
-class MainActivity2 : AppCompatActivity() {
+public final class MainActivity2 : Fragment(R.layout.activity2_main) {
+    //    private val binding: FragmentListBinding by lazy {
+//        FragmentListBinding.inflate(layoutInflater)
+//    }
+    private var _binding: Activity2MainBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var binding: Activity2MainBinding
+    //private lateinit var binding: Activity2MainBinding
 
-    private val viewModel: MainViewModel by viewModels()
+    //private val viewModel: MainViewModel by viewModels()
+    private val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = Activity2MainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        viewModel.uiState.observe(this) { state ->
+        viewModel.uiState.observe(viewLifecycleOwner) { state ->
             when(state) {
                 ViewState.None -> toNone()
                 ViewState.Loading -> toLoading()
@@ -36,6 +52,10 @@ class MainActivity2 : AppCompatActivity() {
             }
         }
 
+        // inflate the layout and bind to the _binding
+        _binding = Activity2MainBinding.inflate(inflater, container, false)
+
+
         binding.button.setOnClickListener {
             viewModel.getProfile()
         }
@@ -43,9 +63,7 @@ class MainActivity2 : AppCompatActivity() {
             viewModel.setProfile(Profile(
                 userId = 1,
                 name = "Vasya",
-                age = 25,
-                //registered = Instant.parse("2023-11-17T11:43:22.306Z"),
-                //interests = listOf("рыбалка", "корутины", "футбол")
+                age = 55,
             ))
         }
         binding.delete.setOnClickListener {
@@ -53,8 +71,6 @@ class MainActivity2 : AppCompatActivity() {
                 userId = 1,
                 name = "Vasya",
                 age = 25,
-                //registered = Instant.parse("2023-11-17T11:43:22.306Z"),
-                //interests = listOf("рыбалка", "корутины", "футбол")
             ))
         }
 
@@ -63,9 +79,12 @@ class MainActivity2 : AppCompatActivity() {
         qqq.add( Profile(userId = 1,name = "Vasya",age = 96))
         qqq.add( Profile(userId = 1,name = "Vasya",age = 97))
 
-        //binding.put.setOnClickListener {
-        //    viewModel.putProfile(qqq)
-        //}
+        binding.put.setOnClickListener {
+            viewModel.putProfile(qqq)
+        }
+
+        return binding.root
+
     }
 
     private fun toNone() = with(binding) {
