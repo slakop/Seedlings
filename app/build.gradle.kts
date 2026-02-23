@@ -78,4 +78,6 @@ dependencies {
     implementation("androidx.databinding:databinding-runtime:8.10.0")
     implementation("it.xabaras.android:recyclerview-swipedecorator:1.4")
     implementation("androidx.fragment:fragment-ktx:1.5.0-beta01")
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 }

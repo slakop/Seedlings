@@ -9,4 +9,8 @@
     <string name="post">Post</string>
     <string name="get">Get</string>
     <string name="addCard">Add Card</string>
+    <string name="title_activity_nav">NavActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_view">View</string>
+    <string name="title_network">Network</string>
 </resources>

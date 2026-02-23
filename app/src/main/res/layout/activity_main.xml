@@ -4,19 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/main"
-    tools:context=".MainActivity">
+    >
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/top_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.9" />
+        android:layout_weight="1" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/bottom_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.1" />
+        android:layout_weight="1" />
 
 </LinearLayout>
