@@ -3,7 +3,7 @@ package com.example.seedlings
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.seedlings.databinding.ActivityNavBinding
-import com.example.seedlings.fragment.BottomFragment
+//import com.example.seedlings.fragment.BottomFragment
 import com.example.seedlings.fragment.CalendarFragment
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.navigation.findNavController

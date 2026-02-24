@@ -37,6 +37,11 @@ public final class NetworkFragment : Fragment(R.layout.fragment_network) {
         savedInstanceState: Bundle?
     ): View? {
 
+        childFragmentManager.beginTransaction()
+            .replace(R.id.container, CardFragment())
+            .addToBackStack(null)
+            .commit()
+
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
             when(state) {
                 ViewState.None -> toNone()
@@ -116,7 +121,7 @@ public final class NetworkFragment : Fragment(R.layout.fragment_network) {
         val index = profile.size-1
 //        nameLabel.isVisible = true
 //        name.isVisible = true
-          name.text = profile[index].type
+//        name.text = profile[index].type
 //        ageLabel.isVisible = true
 //        age.isVisible = true
 //        age.text = profile[index].age.toString()

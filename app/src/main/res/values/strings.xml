@@ -13,4 +13,8 @@
     <string name="title_home">Home</string>
     <string name="title_view">View</string>
     <string name="title_network">Network</string>
+    <string name="type">Type</string>
+    <string name="title">Name</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="day">Day</string>
 </resources>
